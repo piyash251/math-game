@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <title>Math Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+      text-align: center;
+      padding-top: 50px;
+    }
+    .game-box {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      width: 300px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+      width: 80px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    #result {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="game-box">
+  <h2>🧠 যোগফল বলো</h2>
+  <p id="question">লোড হচ্ছে...</p>
+
+  <input type="number" id="answer" placeholder="উত্তর">
+  <br>
+  <button onclick="checkAnswer()">জমা দাও</button>
+
+  <p id="result"></p>
+  <p>স্কোর: <span id="score">0</span></p>
+</div>
+
+<script>
+  let num1, num2, score = 0;
+
+  function generateQuestion() {
+    num1 = Math.floor(Math.random() * 20);
+    num2 = Math.floor(Math.random() * 20);
+    document.getElementById("question").innerText = `${num1} + ${num2} = ?`;
+  }
+
+  function checkAnswer() {
+    const userAnswer = parseInt(document.getElementById("answer").value);
+    const correctAnswer = num1 + num2;
+
+    if (userAnswer === correctAnswer) {
+      document.getElementById("result").innerText = "✔️ সঠিক!";
+      score++;
+    } else {
+      document.getElementById("result").innerText = `❌ ভুল! সঠিক উত্তর: ${correctAnswer}`;
+    }
+
+    document.getElementById("score").innerText = score;
+    document.getElementById("answer").value = "";
+    generateQuestion();
+  }
+
+  generateQuestion();
+</script>
+
+</body>
+</html>
